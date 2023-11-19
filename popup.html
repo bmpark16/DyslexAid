@@ -6,15 +6,42 @@
     button {
       margin: 5px;
     }
+
+    #title {
+      font-size: 30px;
+      color: black;
+      font-family: Arial, sans-serif;
+      margin-bottom: 10px;
+    }
+
+    #subtitle {
+      font-size: 15px;
+      color: black;
+      font-family: Arial, sans-serif;
+      margin-bottom: 10px;
+    }
+
+    #modeToggle {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
   </style>
 </head>
 
-<body>
+<body style="width: 20em; height: 15em">
+    <div id="title">Dylsexaid</div>
+    <div id="subtitle">Change Font</div>
   <button id="defaultFont">Default</button>
   <button id="changeFontArial">Arial</button>
   <button id="changeFontCalibri">Calibri</button>
   <button id="changeFontRoboto">Roboto</button>
   <button id="changeFontVerdana">Verdana</button>
+
+  <div id="modeToggle">
+    <label for="toggleSwitch">Dark Mode</label>
+    <input type="checkbox" id="toggleSwitch">
+  </div>
 
   <script src="popup.js"></script>
 </body>
