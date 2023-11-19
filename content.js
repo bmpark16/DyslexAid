@@ -5,15 +5,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   });
   
   function changeFontSize(fontSize) {
-    // Change the font size of the #subtitle element
-    var subtitle = document.getElementById('subtitle');
-    if (subtitle) {
-      subtitle.style.fontSize = fontSize;
-    }
+    // Select specific elements using querySelectorAll
+    var elementsToChange = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, div, a');
   
-    // Change the font size of all buttons
-    var buttons = document.querySelectorAll('button');
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].style.fontSize = fontSize;
+    // Loop through each selected element and change the font size
+    for (var i = 0; i < elementsToChange.length; i++) {
+      elementsToChange[i].style.fontSize = fontSize;
     }
   }
