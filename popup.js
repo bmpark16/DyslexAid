@@ -51,6 +51,16 @@ for (let size = 12; size <= 15; size++) {
   });
 }
 
+// Add event listeners for buttons that increase word spacing (1-5x)
+for (let i = 1; i <= 5; i++) {
+  document.getElementById("increaseWordSpacing" + i).addEventListener("click", function () {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, { action: "increaseWordSpacing", value: i });
+    });
+  });
+}
+
+
 // Event listeners for buttons that increase letter spacing (1-5x)
 for (let i = 1; i <= 5; i++) {
   document.getElementById("increaseSpacing" + i).addEventListener("click", function () {
@@ -68,6 +78,8 @@ document.getElementById("toggleSwitch").addEventListener("change", function () {
   const subtitle1 = document.getElementById("subtitle1");
   const subtitle2 = document.getElementById("subtitle2");
   const subtitle3 = document.getElementById("subtitle3");
+  const subtitle4 = document.getElementById("subtitle4");
+
   const isDarkMode = this.checked;
 
   // Adjust styles based on the selected mode
@@ -78,13 +90,14 @@ document.getElementById("toggleSwitch").addEventListener("change", function () {
     subtitle1.style.color = "#fff";
     subtitle2.style.color = "#fff";
     subtitle3.style.color = "#fff";
+    subtitle4.style.color = "#fff";
   } else {
     body.style.backgroundColor = "";
     body.style.color = "";
     title.style.color = "black";
     subtitle1.style.color = "black";
     subtitle2.style.color = "black";
-    subtitle3.style.color = "black";
+    subtitle4.style.color = "black";
   }
 
   // Send a message to the content script indicating the mode change

@@ -16,7 +16,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     resetFontSize(); // Reset font size to the original size
   } else if (request.action === "changeFontSize") {
     changeFontSize(request.size); // Change font size to the specified value
-  }
+  // Add a new condition for word spacing in the message listener
+  } else if (request.action === "increaseWordSpacing") {
+    increaseWordSpacing(request.value);
+}
 });
 
 // Function to change the font family of selected text elements
@@ -55,11 +58,20 @@ function changeFontSize(size) {
   });
 }
 
+// Function to increase word spacing of selected text elements
+function increaseWordSpacing(value) {
+  // Select specific text elements (paragraphs, headings, spans, divs with class myTextClass)
+  document.querySelectorAll('p, h1, h2, h3, span, div.myTextClass').forEach(element => {
+    // Set the word spacing to a more drastic value
+    element.style.wordSpacing = (value * 5) + "px";
+  });
+}
+
 // Function to increase letter spacing of selected text elements
 function increaseLetterSpacing(value) {
   // Select specific text elements (paragraphs, headings, spans, divs with class myTextClass)
   document.querySelectorAll('p, h1, h2, h3, span, div.myTextClass').forEach(element => {
     // Set the letter spacing to the specified value
-    element.style.letterSpacing = value + "px";
+    element.style.letterSpacing = (value * 2) + "px";
   });
 }
