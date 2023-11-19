@@ -12,4 +12,13 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   } else if (request.action === "changeFont") {
     changeFontFamily(request.font);
   }
+  else if (request.action === "increaseSpacing") {
+    increaseLetterSpacing(request.value);
+  }
 });
+
+function increaseLetterSpacing(value) {
+  document.querySelectorAll('p, h1, h2, h3, span, div.myTextClass').forEach(element => {
+    element.style.letterSpacing = value + "px";
+  });
+}
