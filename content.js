@@ -1,7 +1,15 @@
+// content.js
+
+function changeFontFamily(font) {
+  document.querySelectorAll('p, h1, h2, h3, span, div.myTextClass').forEach(element => {
+    element.style.fontFamily = font;
+  });
+}
+
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === "defaultFont") {
-    document.body.style.fontFamily = "";
+    changeFontFamily("");
   } else if (request.action === "changeFont") {
-    document.body.style.fontFamily = request.font;
+    changeFontFamily(request.font);
   }
 });

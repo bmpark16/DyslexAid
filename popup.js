@@ -46,4 +46,3 @@ document.getElementById("toggleSwitch").addEventListener("change", function () {
     subtitle.style.color = "black"; // Set subtitle font color to black in light mode
   }
 });
-
