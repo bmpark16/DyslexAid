@@ -1,16 +1,29 @@
-document.addEventListener('DOMContentLoaded', function () {
-  var fontSelector = document.getElementById('fontSelector');
-
-  fontSelector.addEventListener('change', function () {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      var selectedFont = fontSelector.value;
-      console.log('Selected Font:', selectedFont); // Debugging: log the font change
-      chrome.tabs.sendMessage(tabs[0].id, { action: 'changeFont', font: selectedFont });
-    });
-  });
-
-  // Set the default font to "Default" on extension popup open
+document.getElementById("defaultFont").addEventListener("click", function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: 'changeFont', font: 'Default' });
+    chrome.tabs.sendMessage(tabs[0].id, { action: "defaultFont" });
+  });
+});
+
+document.getElementById("changeFontArial").addEventListener("click", function () {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Arial, sans-serif" });
+  });
+});
+
+document.getElementById("changeFontCalibri").addEventListener("click", function () {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Calibri, sans-serif" });
+  });
+});
+
+document.getElementById("changeFontRoboto").addEventListener("click", function () {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Roboto, sans-serif" });
+  });
+});
+
+document.getElementById("changeFontVerdana").addEventListener("click", function () {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Verdana, sans-serif" });
   });
 });

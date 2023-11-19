@@ -1,1 +1,1 @@
-# HackCamp
+# Dyslexic Helper - HackCamp Edition

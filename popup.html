@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Font Changer</title>
-  <script src="popup.js"></script>
+  <style>
+    button {
+      margin: 5px;
+    }
+  </style>
 </head>
+
 <body>
-  <h3>Select a Font:</h3>
-  <select id="fontSelector">
-    <option value="Default">Default</option>
-    <option value="Arial">Arial</option>
-    <option value="Times New Roman">Times New Roman</option>
-    <option value="Verdana">Verdana</option>
-    <!-- Remove Lexend option -->
-  </select>
+  <button id="defaultFont">Default</button>
+  <button id="changeFontArial">Arial</button>
+  <button id="changeFontCalibri">Calibri</button>
+  <button id="changeFontRoboto">Roboto</button>
+  <button id="changeFontVerdana">Verdana</button>
+
+  <script src="popup.js"></script>
 </body>
+
 </html>
