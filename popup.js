@@ -1,63 +1,52 @@
+// Event listener for the "Default Font" button
 document.getElementById("defaultFont").addEventListener("click", function () {
+  // Query the active tab in the current window
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    // Send a message to the content script with the action "defaultFont"
     chrome.tabs.sendMessage(tabs[0].id, { action: "defaultFont" });
   });
 });
 
+// Event listener for the "Change Font - Arial" button
 document.getElementById("changeFontArial").addEventListener("click", function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    // Send a message to the content script with the action "changeFont" and the font value
     chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Arial, sans-serif" });
   });
 });
 
+// Event listener for the "Change Font - Calibri" button
 document.getElementById("changeFontCalibri").addEventListener("click", function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Calibri, sans-serif" });
   });
 });
 
+// Event listener for the "Change Font - Roboto" button
 document.getElementById("changeFontRoboto").addEventListener("click", function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Roboto, sans-serif" });
   });
 });
 
+// Event listener for the "Change Font - Verdana" button
 document.getElementById("changeFontVerdana").addEventListener("click", function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Verdana, sans-serif" });
   });
 });
 
-document.getElementById("increaseSpacing1").addEventListener("click", function () {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "increaseSpacing", value: 1 });
+// Event listeners for buttons that increase letter spacing (1-5x)
+for (let i = 1; i <= 5; i++) {
+  document.getElementById("increaseSpacing" + i).addEventListener("click", function () {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      // Send a message to the content script with the action "increaseSpacing" and the value
+      chrome.tabs.sendMessage(tabs[0].id, { action: "increaseSpacing", value: i });
+    });
   });
-});
+}
 
-document.getElementById("increaseSpacing2").addEventListener("click", function () {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "increaseSpacing", value: 2 });
-  });
-});
-
-document.getElementById("increaseSpacing3").addEventListener("click", function () {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "increaseSpacing", value: 3 });
-  });
-});
-
-document.getElementById("increaseSpacing4").addEventListener("click", function () {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "increaseSpacing", value: 4 });
-  });
-});
-
-document.getElementById("increaseSpacing5").addEventListener("click", function () {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "increaseSpacing", value: 5 });
-  });
-});
-
+// Event listener for the Dark/Light mode toggle switch
 document.getElementById("toggleSwitch").addEventListener("change", function () {
   const body = document.body;
   const title = document.getElementById("title");
@@ -65,6 +54,7 @@ document.getElementById("toggleSwitch").addEventListener("change", function () {
   const subtitle2 = document.getElementById("subtitle2");
   const isDarkMode = this.checked;
 
+  // Adjust styles based on the selected mode
   if (isDarkMode) {
     body.style.backgroundColor = "#333";
     body.style.color = "#fff";
@@ -79,7 +69,7 @@ document.getElementById("toggleSwitch").addEventListener("change", function () {
     subtitle2.style.color = "black";
   }
 
-  // Send a message to content script indicating the mode change
+  // Send a message to the content script indicating the mode change
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { action: "toggleMode", isDarkMode });
   });
