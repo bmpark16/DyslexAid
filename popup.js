@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   fontSelector.addEventListener('change', function () {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       var selectedFont = fontSelector.value;
+      console.log('Selected Font:', selectedFont); // Check in the console
       chrome.tabs.sendMessage(tabs[0].id, { action: 'changeFont', font: selectedFont });
     });
   });
