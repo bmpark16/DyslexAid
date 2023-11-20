@@ -1,3 +1,42 @@
+// Event listener for the Dark/Light mode toggle switch
+document.getElementById("toggleSwitch").addEventListener("change", function () {
+  const body = document.body;
+  const title = document.getElementById("title");
+  const subtitle1 = document.getElementById("subtitle1");
+  const subtitle2 = document.getElementById("subtitle2");
+  const subtitle3 = document.getElementById("subtitle3");
+  const subtitle4 = document.getElementById("subtitle4");
+  const subtitle5 = document.getElementById("subtitle5");
+
+  const isDarkMode = this.checked;
+
+  // Adjust styles based on the selected mode
+  if (isDarkMode) {
+    body.style.backgroundColor = "#333";
+    body.style.color = "#fff";
+    title.style.color = "#fff";
+    subtitle1.style.color = "#fff";
+    subtitle2.style.color = "#fff";
+    subtitle3.style.color = "#fff";
+    subtitle4.style.color = "#fff";
+    subtitle5.style.color = "#fff";
+  } else {
+    body.style.backgroundColor = "";
+    body.style.color = "";
+    title.style.color = "black";
+    subtitle1.style.color = "black";
+    subtitle2.style.color = "black";
+    subtitle3.style.color = "black";
+    subtitle4.style.color = "black";
+    subtitle5.style.color = "black";
+  }
+
+  // Send a message to the content script indicating the mode change
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { action: "toggleMode", isDarkMode });
+  });
+});
+
 // Event listener for the "Default Font" button
 document.getElementById("defaultFont").addEventListener("click", function () {
   // Query the active tab in the current window
@@ -71,37 +110,12 @@ for (let i = 1; i <= 5; i++) {
   });
 }
 
-// Event listener for the Dark/Light mode toggle switch
-document.getElementById("toggleSwitch").addEventListener("change", function () {
-  const body = document.body;
-  const title = document.getElementById("title");
-  const subtitle1 = document.getElementById("subtitle1");
-  const subtitle2 = document.getElementById("subtitle2");
-  const subtitle3 = document.getElementById("subtitle3");
-  const subtitle4 = document.getElementById("subtitle4");
+// Event listener for the text alignment toggle switch
+document.getElementById("toggleLeftAlign").addEventListener("change", function () {
+  const isLeftAlign = this.checked;
 
-  const isDarkMode = this.checked;
-
-  // Adjust styles based on the selected mode
-  if (isDarkMode) {
-    body.style.backgroundColor = "#333";
-    body.style.color = "#fff";
-    title.style.color = "#fff";
-    subtitle1.style.color = "#fff";
-    subtitle2.style.color = "#fff";
-    subtitle3.style.color = "#fff";
-    subtitle4.style.color = "#fff";
-  } else {
-    body.style.backgroundColor = "";
-    body.style.color = "";
-    title.style.color = "black";
-    subtitle1.style.color = "black";
-    subtitle2.style.color = "black";
-    subtitle4.style.color = "black";
-  }
-
-  // Send a message to the content script indicating the mode change
+  // Send a message to the content script indicating the text alignment
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "toggleMode", isDarkMode });
+    chrome.tabs.sendMessage(tabs[0].id, { action: "toggleLeftAlign", isLeftAlign });
   });
 });
