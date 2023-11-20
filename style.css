@@ -1,0 +1,17 @@
+.button {
+    position : absolute ; 
+    top : 50%; 
+    left : 50%;  
+    height : 50px ; 
+    transform : translate(-50%,-50%); 
+}
+
+.container .toggle{
+    position: absolute; 
+    top : 0; 
+    left : 0; 
+    width : 90px; 
+    height : 50px; 
+    background : #444; 
+    border-radius : 30px; 
+}

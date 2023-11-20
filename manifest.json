@@ -9,6 +9,11 @@
     "permissions": [
       "activeTab"
     ],
+    "web_accessible_resources": [
+      "fonts/OpenDyslexicAlta-Regular.otf",
+      "fonts/Helvetica.otf",
+      "fonts/Lexend-Regular.ttf"
+    ],
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
@@ -16,4 +21,3 @@
       }
     ]
   }
-  
