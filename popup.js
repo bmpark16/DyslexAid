@@ -110,12 +110,11 @@ for (let i = 1; i <= 5; i++) {
   });
 }
 
-// Event listener for the text alignment toggle switch
-document.getElementById("toggleLeftAlign").addEventListener("change", function () {
-  const isLeftAlign = this.checked;
-
-  // Send a message to the content script indicating the text alignment
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "toggleLeftAlign", isLeftAlign });
+// Event listeners for buttons that adjust line height (1-5x)
+for (let i = 1; i <= 5; i++) {
+  document.getElementById("adjustLineHeight" + i).addEventListener("click", function () {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, { action: "adjustLineHeight", value: i });
+    });
   });
-});
+}

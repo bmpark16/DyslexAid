@@ -19,9 +19,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   // Add a new condition for word spacing in the message listener
   } else if (request.action === "increaseWordSpacing") {
     increaseWordSpacing(request.value);
-  // Add a new condition for text alignment in the message listener
-  } else if (request.action === "toggleLeftAlign") {
-    toggleLeftAlign(request.isLeftAlign);
+  // Add a new condition for line height in the message listener
+  } else if (request.action === "adjustLineHeight") {
+    adjustLineHeight(request.value);
   }
 });
 
@@ -79,11 +79,11 @@ function increaseLetterSpacing(value) {
   });
 }
 
-// Function to toggle text alignment to the left of selected text elements
-function toggleLeftAlign(isLeftAlign) {
-  // Select all text elements on the page (you might want to adjust the selector based on the website's structure)
-  document.querySelectorAll('*').forEach(element => {
-    // Set the text alignment based on the toggle state
-    element.style.textAlign = isLeftAlign ? "left" : "";
+// Function to adjust line height of selected text elements
+function adjustLineHeight(value) {
+  // Select specific text elements (paragraphs, headings, spans, divs with class myTextClass)
+  document.querySelectorAll('p, h1, h2, h3, span, div.myTextClass').forEach(element => {
+      // Set the line height to the specified value
+      element.style.lineHeight = value;
   });
 }
