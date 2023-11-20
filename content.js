@@ -98,7 +98,7 @@ function increaseWordSpacing(value) {
   // Select specific text elements (paragraphs, headings, spans, divs with class myTextClass)
   document.querySelectorAll('p, h1, h2, h3, span, div.myTextClass').forEach(element => {
     // Set the word spacing to a more drastic value
-    element.style.wordSpacing = (value * 5) + "px";
+    element.style.wordSpacing = (value * 3.5) + "px";
   });
 }
 
@@ -107,7 +107,7 @@ function increaseLetterSpacing(value) {
   // Select specific text elements (paragraphs, headings, spans, divs with class myTextClass)
   document.querySelectorAll('p, h1, h2, h3, span, div.myTextClass').forEach(element => {
     // Set the letter spacing to the specified value
-    element.style.letterSpacing = (value * 2) + "px";
+    element.style.letterSpacing = (value * 1.5) + "px";
   });
 }
 
