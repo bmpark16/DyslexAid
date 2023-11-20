@@ -46,18 +46,24 @@ document.getElementById("defaultFont").addEventListener("click", function () {
   });
 });
 
-// Event listener for the "Change Font - Arial" button
-document.getElementById("changeFontArial").addEventListener("click", function () {
+// Event listener for the "Change Font - OpenDyslexic" button
+document.getElementById("changeFontOpenDyslexic").addEventListener("click", function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    // Send a message to the content script with the action "changeFont" and the font value
-    chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Arial, sans-serif" });
+    chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "OpenDyslexic" });
   });
 });
 
-// Event listener for the "Change Font - Calibri" button
-document.getElementById("changeFontCalibri").addEventListener("click", function () {
+// Event listener for the "Change Font - Helvetica" button
+document.getElementById("changeFontHelvetica").addEventListener("click", function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Calibri, sans-serif" });
+    chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Helvetica" });
+  });
+});
+
+// Event listener for the "Change Font - Lexend" button
+document.getElementById("changeFontLexend").addEventListener("click", function () {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { action: "changeFont", font: "Lexend" });
   });
 });
 

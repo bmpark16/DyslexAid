@@ -34,6 +34,38 @@ function changeFontFamily(font) {
   });
 }
 
+// Function to change the font family of selected text elements
+function changeFontFamily(font) {
+  let fontUrl;
+
+  // Check if the specified font is OpenDyslexic, Helvetica, or Lexend
+  if (font === "OpenDyslexic") {
+    fontUrl = chrome.runtime.getURL("fonts/OpenDyslexicAlta-Regular.otf");
+  } else if (font === "Helvetica") {
+    fontUrl = chrome.runtime.getURL("fonts/Helvetica.otf");
+  } else if (font === "Lexend") {
+    fontUrl = chrome.runtime.getURL("fonts/Lexend-Regular.ttf");
+  }
+
+  // Load the font from the extension resources
+  if (fontUrl) {
+    const style = document.createElement("style");
+    style.textContent = `
+      @font-face {
+        font-family: '${font}';
+        src: url('${fontUrl}') format('opentype');
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // Select specific text elements (paragraphs, headings, spans, divs with class myTextClass)
+  document.querySelectorAll('p, h1, h2, h3, span, div.myTextClass').forEach(element => {
+    // Use the specified font if specified, otherwise use the default font
+    element.style.fontFamily = font ? font : `'Helvetica', sans-serif`;
+  });
+}
+
 // Store original font size for each element
 const originalFontSizes = new Map();
 
