@@ -8,4 +8,4 @@ After researching about how we could enhance accessibility and inclusivity, we f
 We built this chrome extension using CSS, HTML, JavaScript, Figma, and Adobe Illustrator.
 
 ## Contributions
-Project made by: Joshua Lim, Bryan Lim, Bryan Park, and Minah Park
+Project made by: Joshua Lim, Bryan Lim, Bryan Park, and Jenn (Minah) Park
